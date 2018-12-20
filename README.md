@@ -1,5 +1,8 @@
 # pnts-tile-cs
+
 Library for (de)serializing  LiDAR  tiles
+
+[![NuGet Status](http://img.shields.io/nuget/v/pnts-tile.svg?style=flat)](https://www.nuget.org/packages/pnts-tile/)
 
 ## Sample code
 
