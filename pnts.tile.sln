@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pnts-tile", "src\pnts-tile.csproj", "{E6F9F300-4D6E-4057-889B-1C4408E55A05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pnts.tile.tests", "pnts.tile.tests\pnts.tile.tests.csproj", "{BA85BD3C-A417-4B15-B403-D7FE97F34248}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pnts.tile.tests", "pnts.tile.tests\pnts.tile.tests.csproj", "{BA85BD3C-A417-4B15-B403-D7FE97F34248}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{95B07316-258A-4E1A-BD70-45D719509E04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "samples\ConsoleApp\ConsoleApp.csproj", "{D8D79426-CA1B-4698-85CD-C43F46290AEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{BA85BD3C-A417-4B15-B403-D7FE97F34248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA85BD3C-A417-4B15-B403-D7FE97F34248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA85BD3C-A417-4B15-B403-D7FE97F34248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8D79426-CA1B-4698-85CD-C43F46290AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D79426-CA1B-4698-85CD-C43F46290AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8D79426-CA1B-4698-85CD-C43F46290AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D79426-CA1B-4698-85CD-C43F46290AEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8D79426-CA1B-4698-85CD-C43F46290AEA} = {95B07316-258A-4E1A-BD70-45D719509E04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {431890DB-23A3-4C9F-B1B4-C43738F03CB9}
