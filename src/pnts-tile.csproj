@@ -4,6 +4,16 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>Pnts.Tile</RootNamespace>
     <AssemblyName>pnts.tile</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1</Version>
+    <Authors>Bert Temme</Authors>
+    <Company>Geodan</Company>
+    <Product>pnts-tile</Product>
+    <PackageId>pnts-tile</PackageId>
+    <Description>.NET Standard 2.0 Library for (de)serializing Pnts files</Description>
+    <PackageLicenseUrl>https://github.com/bertt/pnts-tile-cs/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/bertt/pnts-tile-cs</PackageProjectUrl>
+    <PackageTags>pnts tile pointcloud</PackageTags>
   </PropertyGroup>
 
 </Project>
