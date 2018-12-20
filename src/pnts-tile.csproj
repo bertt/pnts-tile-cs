@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>Pnts.Tile</RootNamespace>
+    <AssemblyName>pnts.tile</AssemblyName>
+  </PropertyGroup>
+
+</Project>
