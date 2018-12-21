@@ -31,14 +31,16 @@ namespace Tests
             Assert.IsTrue(expectedMagicHeader == pnts.Magic);
             Assert.IsTrue(expectedVersionHeader == pnts.Version);
             Assert.IsTrue(pnts.Points != null);
-            Assert.IsTrue(pnts.Points.Count > 0 );
+            Assert.IsTrue(pnts.Points.Count > 0);
             Assert.IsTrue(pnts.Points[0].X == (float)144.78);
             Assert.IsTrue(pnts.Points[0].Y == (float)-64.85);
             Assert.IsTrue(pnts.Points[0].Z == (float)-174.68);
-
-
-
-
+            Assert.IsTrue(pnts.Colors != null);
+            Assert.IsTrue(pnts.Colors.Count > 0);
+            Assert.IsTrue(pnts.Colors[0].R == 75);
+            Assert.IsTrue(pnts.Colors[0].G == 91);
+            Assert.IsTrue(pnts.Colors[0].B == 88);
+            Assert.IsTrue(pnts.FeatureTableMetadata.points_length == 146);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace Pnts.Tile
 {
@@ -7,5 +8,7 @@ namespace Pnts.Tile
         public string Magic { get; set; }
         public int Version { get; set; }
         public List<Point> Points { get; set; }
+        public List<Color> Colors { get; set; }
+        public FeatureTableMetadata FeatureTableMetadata { get; set; }
     }
 }
