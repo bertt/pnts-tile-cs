@@ -5,7 +5,7 @@
     <RootNamespace>Pnts.Tile</RootNamespace>
     <AssemblyName>pnts.tile</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1</Version>
+    <Version>0.2</Version>
     <Authors>Bert Temme</Authors>
     <Company>Geodan</Company>
     <Product>pnts-tile</Product>
@@ -14,6 +14,7 @@
     <PackageLicenseUrl>https://github.com/bertt/pnts-tile-cs/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/bertt/pnts-tile-cs</PackageProjectUrl>
     <PackageTags>pnts tile pointcloud</PackageTags>
+    <PackageReleaseNotes>adding colors</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
