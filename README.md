@@ -6,7 +6,7 @@ Library for (de)serializing  LiDAR  tiles
 
 Spec: https://github.com/AnalyticalGraphicsInc/3d-tiles/tree/master/specification/TileFormats/PointCloud
 
-Candidate OGC® Community Standard (pdf alert): file:///C:/Users/bertt/Downloads/18-053_3D_Tiles_1.0_Community_Standard_Candidate.pdf
+3D Tiles Candidate OGC® Community Standard (pdf alert): https://portal.opengeospatial.org/files/79137
 
 ## Sample code
 
