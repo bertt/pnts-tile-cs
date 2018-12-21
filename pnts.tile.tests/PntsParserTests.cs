@@ -40,7 +40,11 @@ namespace Tests
             Assert.IsTrue(pnts.Colors[0].R == 75);
             Assert.IsTrue(pnts.Colors[0].G == 91);
             Assert.IsTrue(pnts.Colors[0].B == 88);
-            Assert.IsTrue(pnts.FeatureTableMetadata.points_length == 146);
+            Assert.IsTrue(pnts.FeatureTableMetadata.points_length == 164);
+            var rtc = pnts.FeatureTableMetadata.Rtc_Center;
+            Assert.IsTrue(rtc[0] == 3830004.5);
+            Assert.IsTrue(rtc[1] == 323597.5);
+            Assert.IsTrue(rtc[2] == 5072948.5);
         }
     }
 }

@@ -26,7 +26,6 @@ namespace Pnts.Tile
                 var batchTableBinByteLength = reader.ReadUInt32();
 
                 var featureTableJsonBytes = reader.ReadBytes((int)featureTableJsonByteLength);
-                // q: what is RTC_CENTER?
                 var featureTableJson = Encoding.UTF8.GetString(featureTableJsonBytes); // "{\"POINTS_LENGTH\":164,\"POSITION\":{\"byteOffset\":0},\"RGB\":{\"byteOffset\":1968},\"RTC_CENTER\":[3830004.5,323597.5,5072948.5]}\n"
                 var featureTableMetadata = featureTableJson.FromJson<FeatureTableMetadata>();
 
@@ -49,15 +48,11 @@ namespace Pnts.Tile
                 var colors = new List<Color>();
                 for (var i = 0; i < featureTableMetadata.points_length; i++)
                 {
-                    var r = (uint)binaryReader.ReadSByte(); 
-                    var g = (uint)binaryReader.ReadSByte(); 
-                    var b = (uint)binaryReader.ReadSByte();
+                    var r = (int)binaryReader.ReadByte(); 
+                    var g = (int)binaryReader.ReadByte(); 
+                    var b = (int)binaryReader.ReadByte();
 
-                    if (r < 0)
-                    {
-                        Debug.WriteLine("hoho");
-                    }
-                    var c = Color.FromArgb((int)r, (int)g, (int)b);
+                    var c = Color.FromArgb(r, g, b);
                     colors.Add(c);
                 }
 
