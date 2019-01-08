@@ -20,3 +20,8 @@ Console.WriteLine($"RTC_CENTER (relative to center x,y,z): {rtc[0]},{rtc[1]},{rt
 Console.WriteLine($"First point (x,y,z): {pnts.Points[0].X}, {pnts.Points[0].Y}, {pnts.Points[0].Z} ");
 Console.WriteLine($"First point color (r,g,b): {pnts.Colors[0].R}, {pnts.Colors[0].G}, {pnts.Colors[0].B} ");
 ```
+
+## Positions
+
+From the spec: "RTC_CENTER specifies the center position and all point positions are treated as relative to this value". So for each point, add the point (x,y,z) to the RTC_CENTER to get its position in Cartesian format.
+
