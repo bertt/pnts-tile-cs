@@ -19,7 +19,7 @@ namespace ConsoleApp
             var rtc = pnts.FeatureTableMetadata.Rtc_Center;
             var rtc_cartesian = GetCartesianPoint(rtc[0], rtc[1], rtc[2]);
             var cartesian_points = GetCartesianPoints(pnts);
-            var first_point = (rtc_cartesian - cartesian_points[0]).ToPosition3D();
+            var first_point = (rtc_cartesian + cartesian_points[0]).ToPosition3D();
 
             Console.WriteLine($"Number of points: {pnts.FeatureTableMetadata.points_length} ");
             Console.WriteLine($"RTC_CENTER (relative to center x,y,z): {rtc[0]},{rtc[1]},{rtc[2]}");
