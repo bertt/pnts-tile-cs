@@ -23,5 +23,5 @@ Console.WriteLine($"First point color (r,g,b): {pnts.Colors[0].R}, {pnts.Colors[
 
 ## Positions
 
-From the spec: "RTC_CENTER specifies the center position and all point positions are treated as relative to this value". So for each point, add the point (x,y,z) to the RTC_CENTER to get its position in Cartesian format.
+From the spec: "RTC_CENTER specifies the center position and all point positions are treated as relative to this value". So for each point, add the point (x,y,z) to the RTC_CENTER to get its position in Cartesian format. For sample code calculating to longitude, latitude, altitude see https://github.com/bertt/pnts-tile-cs/blob/master/samples/ConsoleApp/Program.cs#L19
 
