@@ -3,6 +3,7 @@ using Pnts.Tile;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace ConsoleApp
 {
@@ -19,8 +20,10 @@ namespace ConsoleApp
             var rtc = pnts.FeatureTableMetadata.Rtc_Center;
             var rtc_cartesian = GetCartesianPoint(rtc[0], rtc[1], rtc[2]);
             var cartesian_points = GetCartesianPoints(pnts);
-            var first_point = (rtc_cartesian + cartesian_points[0]).ToPosition3D();
+            var wgs84Points = GetWgs84Points(cartesian_points, rtc_cartesian);
+            WritePositions3DToCsv("positions.csv", wgs84Points);
 
+            var first_point = wgs84Points[0];
             Console.WriteLine($"Number of points: {pnts.FeatureTableMetadata.points_length} ");
             Console.WriteLine($"RTC_CENTER (relative to center x,y,z): {rtc[0]},{rtc[1]},{rtc[2]}");
             Console.WriteLine($"First point (x,y,z): {pnts.Points[0].X}, {pnts.Points[0].Y}, {pnts.Points[0].Z} ");
@@ -29,6 +32,33 @@ namespace ConsoleApp
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
+
+
+        private static void WritePositions3DToCsv(string file, List<Position3D> points)
+        {
+            var csv = new StringBuilder();
+            foreach (var p in points)
+            {
+                var newLine = $"{p.Longitude.DecimalDegrees},{p.Latitude.DecimalDegrees},{p.Altitude.Value}";
+                csv.AppendLine(newLine);
+            }
+            File.WriteAllText(file, csv.ToString());
+        }
+
+
+        private static List<Position3D> GetWgs84Points(List<CartesianPoint> points, CartesianPoint rtc)
+        {
+            var result = new List<Position3D>();
+
+            foreach(var point in points)
+            {
+                result.Add((rtc + point).ToPosition3D());
+            }
+            return result;
+        }
+
+
+
 
         private static List<CartesianPoint> GetCartesianPoints(Pnts.Tile.Pnts pnts)
         {
