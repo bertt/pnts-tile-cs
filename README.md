@@ -21,6 +21,8 @@ Console.WriteLine($"First point (x,y,z): {pnts.Points[0].X}, {pnts.Points[0].Y},
 Console.WriteLine($"First point color (r,g,b): {pnts.Colors[0].R}, {pnts.Colors[0].G}, {pnts.Colors[0].B} ");
 ```
 
+See https://github.com/bertt/pnts-tile-cs/blob/master/samples/ConsoleApp/Program.cs for sample code converting points in tile to longitude, latitude, altitude and writing to csv file.
+
 ## Positions
 
 From the spec: "RTC_CENTER specifies the center position and all point positions are treated as relative to this value". So for each point, add the point (x,y,z) to the RTC_CENTER to get its position in Cartesian format. For sample code calculating to longitude, latitude, altitude see https://github.com/bertt/pnts-tile-cs/blob/master/samples/ConsoleApp/Program.cs#L19
