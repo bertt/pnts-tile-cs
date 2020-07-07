@@ -57,9 +57,6 @@ namespace ConsoleApp
             return result;
         }
 
-
-
-
         private static List<CartesianPoint> GetCartesianPoints(Pnts.Tile.Pnts pnts)
         {
             var cartesianpoints = new List<CartesianPoint>();

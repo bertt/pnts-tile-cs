@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System.IO;
-using System.Reflection;
 using Pnts.Tile;
+using System.Text.Json;
 
 namespace Tests
 {
@@ -63,6 +63,17 @@ namespace Tests
             Assert.IsTrue(rtc[0] == 3830004.5);
             Assert.IsTrue(rtc[1] == 323597.5);
             Assert.IsTrue(rtc[2] == 5072948.5);
+        }
+
+        [Test]
+        public void FeatureTableDeserialize()
+        {
+            var featureTableJson = "{\"POINTS_LENGTH\":125000,\"POSITION\":{\"byteOffset\":0},\"RGB\":{\"byteOffset\":1500000}}       ";
+            var featureTableMetadata = JsonSerializer.Deserialize<FeatureTableMetadata>(featureTableJson);
+            Assert.IsTrue(featureTableMetadata.points_length == 125000);
+
+
+
         }
     }
 }

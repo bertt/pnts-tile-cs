@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Pnts.Tile</RootNamespace>
     <AssemblyName>pnts.tile</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -16,5 +16,9 @@
     <PackageTags>pnts tile pointcloud</PackageTags>
     <PackageReleaseNotes>adding colors</PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+  </ItemGroup>
 
 </Project>

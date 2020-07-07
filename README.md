@@ -1,6 +1,6 @@
 # pnts-tile-cs
 
-.NET Standard 2.0 Library for (de)serializing  LiDAR  tiles
+.NET Standard 2.1 Library for (de)serializing  Cesium pnts tiles
 
 [![NuGet Status](http://img.shields.io/nuget/v/pnts-tile.svg?style=flat)](https://www.nuget.org/packages/pnts-tile/)
 
@@ -25,5 +25,15 @@ See https://github.com/bertt/pnts-tile-cs/blob/master/samples/ConsoleApp/Program
 
 ## Positions
 
-From the spec: "RTC_CENTER specifies the center position and all point positions are treated as relative to this value". So for each point, add the point (x,y,z) to the RTC_CENTER to get its position in Cartesian format. For sample code calculating to longitude, latitude, altitude see https://github.com/bertt/pnts-tile-cs/blob/master/samples/ConsoleApp/Program.cs#L19
+From the spec: "RTC_CENTER specifies the center position and all point positions are treated as relative to this value". 
+So for each point, add the point (x,y,z) to the RTC_CENTER to get its position in Cartesian format. 
+For sample code calculating to longitude, latitude, altitude see https://github.com/bertt/pnts-tile-cs/blob/master/samples/ConsoleApp/Program.cs#L19
+
+## Dependencies
+
+- System.Text.Json
+
+## History
+
+2018-12-19: Initial coding - pnts reader
 

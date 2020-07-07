@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
-using TinyJson;
+using System.Text.Json;
 
 namespace Pnts.Tile
 {
@@ -27,7 +26,7 @@ namespace Pnts.Tile
 
                 var featureTableJsonBytes = reader.ReadBytes((int)featureTableJsonByteLength);
                 var featureTableJson = Encoding.UTF8.GetString(featureTableJsonBytes); // "{\"POINTS_LENGTH\":164,\"POSITION\":{\"byteOffset\":0},\"RGB\":{\"byteOffset\":1968},\"RTC_CENTER\":[3830004.5,323597.5,5072948.5]}\n"
-                var featureTableMetadata = featureTableJson.FromJson<FeatureTableMetadata>();
+                var featureTableMetadata = JsonSerializer.Deserialize<FeatureTableMetadata>(featureTableJson);
 
                 var featureTableBinBytes = reader.ReadBytes((int)featureTableBinByteLength);
 
