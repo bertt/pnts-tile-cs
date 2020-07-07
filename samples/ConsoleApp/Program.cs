@@ -15,7 +15,7 @@ namespace ConsoleApp
             var stream = File.OpenRead(infile);
             Console.WriteLine("Pnts tile sample application");
             Console.WriteLine($"Start parsing {infile}...");
-            var pnts = PntsParser.ParsePnts(stream);
+            var pnts = PntsSerializer.Deserialize(stream);
 
             var rtc = pnts.FeatureTableMetadata.Rtc_Center;
             var rtc_cartesian = GetCartesianPoint(rtc[0], rtc[1], rtc[2]);

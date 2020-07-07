@@ -6,9 +6,9 @@ using System.Text.Json;
 
 namespace Pnts.Tile
 {
-    public static class PntsParser
+    public static class PntsSerializer
     {
-        public static Pnts ParsePnts(Stream stream)
+        public static Pnts Deserialize(Stream stream)
         {
             using (var reader = new BinaryReader(stream))
             {
@@ -26,7 +26,7 @@ namespace Pnts.Tile
 
                 var featureTableJsonBytes = reader.ReadBytes((int)featureTableJsonByteLength);
                 var featureTableJson = Encoding.UTF8.GetString(featureTableJsonBytes); // "{\"POINTS_LENGTH\":164,\"POSITION\":{\"byteOffset\":0},\"RGB\":{\"byteOffset\":1968},\"RTC_CENTER\":[3830004.5,323597.5,5072948.5]}\n"
-                var featureTableMetadata = JsonSerializer.Deserialize<FeatureTableMetadata>(featureTableJson);
+                var featureTableMetadata = JsonSerializer.Deserialize<FeatureTable>(featureTableJson);
 
                 var featureTableBinBytes = reader.ReadBytes((int)featureTableBinByteLength);
 

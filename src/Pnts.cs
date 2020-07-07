@@ -9,6 +9,6 @@ namespace Pnts.Tile
         public int Version { get; set; }
         public List<Point> Points { get; set; }
         public List<Color> Colors { get; set; }
-        public FeatureTableMetadata FeatureTableMetadata { get; set; }
+        public FeatureTable FeatureTableMetadata { get; set; }
     }
 }

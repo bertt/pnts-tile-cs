@@ -24,7 +24,7 @@ namespace Tests
         {
             // source file: https://github.com/CesiumGS/3d-tiles-samples/blob/master/tilesets/TilesetWithRequestVolume/points.pnts
             var pntsFile =  File.OpenRead(@"testfixtures/points.pnts");
-            var pnts = PntsParser.ParsePnts(pntsFile);
+            var pnts = PntsSerializer.Deserialize(pntsFile);
             Assert.IsTrue(expectedMagicHeader == pnts.Magic);
             Assert.IsTrue(expectedVersionHeader == pnts.Version);
             Assert.IsTrue(pnts.Points.Count == 125000);
@@ -43,7 +43,7 @@ namespace Tests
             // arrange
 
             // act
-            var pnts = PntsParser.ParsePnts(pntsfile);
+            var pnts = PntsSerializer.Deserialize(pntsfile);
 
             // assert
             Assert.IsTrue(expectedMagicHeader == pnts.Magic);
@@ -69,7 +69,7 @@ namespace Tests
         public void FeatureTableDeserialize()
         {
             var featureTableJson = "{\"POINTS_LENGTH\":125000,\"POSITION\":{\"byteOffset\":0},\"RGB\":{\"byteOffset\":1500000}}       ";
-            var featureTableMetadata = JsonSerializer.Deserialize<FeatureTableMetadata>(featureTableJson);
+            var featureTableMetadata = JsonSerializer.Deserialize<FeatureTable>(featureTableJson);
             Assert.IsTrue(featureTableMetadata.points_length == 125000);
 
 

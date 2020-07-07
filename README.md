@@ -33,6 +33,13 @@ For sample code calculating to longitude, latitude, altitude see https://github.
 
 - System.Text.Json
 
+## Known limitis
+
+- add support for POSITION_QUANTIZED, RGBA, RGB565, NORMAL, NORMAL_OCT16P, BATCH_ID, QUANTIZED_VOLUME_OFFSET, QUANTIZED_VOLUME_SCALE, CONSTANT_RGBA,BATCH_LENGTH
+
+- add pnts writer functionality
+
+
 ## History
 
 2018-12-19: Initial coding - pnts reader

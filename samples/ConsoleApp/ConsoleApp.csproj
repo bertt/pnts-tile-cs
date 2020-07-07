@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotSpatial.Positioning.PCL" Version="1.7.0" />
+    <PackageReference Include="DotSpatial.Positioning" Version="1.9.0" />
   </ItemGroup>
 
   <ItemGroup>
