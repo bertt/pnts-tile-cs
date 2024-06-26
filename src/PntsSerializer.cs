@@ -25,7 +25,12 @@ namespace Pnts.Tile
                 var batchTableBinByteLength = reader.ReadUInt32();
 
                 var featureTableJsonBytes = reader.ReadBytes((int)featureTableJsonByteLength);
-                var featureTableJson = Encoding.UTF8.GetString(featureTableJsonBytes); // "{\"POINTS_LENGTH\":164,\"POSITION\":{\"byteOffset\":0},\"RGB\":{\"byteOffset\":1968},\"RTC_CENTER\":[3830004.5,323597.5,5072948.5]}\n"
+                var featureTableJson = Encoding.UTF8.GetString(featureTableJsonBytes);
+
+                // "{\"POINTS_LENGTH\":164,\"POSITION\":{\"byteOffset\":0},\"RGB\":{\"byteOffset\":1968},\"RTC_CENTER\":[3830004.5,323597.5,5072948.5]}\n"
+                // {\"POINTS_LENGTH\":164,\"POSITION\":{\"byteOffset\":0},\"RGB\":{\"byteOffset\":1968},\"RTC_CENTER\":[3830004.5,323597.5,5072948.5]}\n
+                // "{\"POINTS_LENGTH\":1000,\"POSITION\":{\"byteOffset\":0},\"RGB\":{\"byteOffset\":12000}}       
+
                 var featureTableMetadata = JsonSerializer.Deserialize<FeatureTable>(featureTableJson);
 
                 var featureTableBinBytes = reader.ReadBytes((int)featureTableBinByteLength);
@@ -33,10 +38,10 @@ namespace Pnts.Tile
                 var featureTableStream = new MemoryStream(featureTableBinBytes);
                 var binaryReader = new BinaryReader(featureTableStream);
 
-
                 var points = new List<Point>();
-                for (var  i = 0; i < featureTableMetadata.points_length; i++){
-                    var x = binaryReader.ReadSingle(); 
+                for (var i = 0; i < featureTableMetadata.points_length; i++)
+                {
+                    var x = binaryReader.ReadSingle();
                     var y = binaryReader.ReadSingle();
                     var z = binaryReader.ReadSingle();
 
@@ -47,12 +52,31 @@ namespace Pnts.Tile
                 var colors = new List<Color>();
                 for (var i = 0; i < featureTableMetadata.points_length; i++)
                 {
-                    var r = (int)binaryReader.ReadByte(); 
-                    var g = (int)binaryReader.ReadByte(); 
+                    var r = (int)binaryReader.ReadByte();
+                    var g = (int)binaryReader.ReadByte();
                     var b = (int)binaryReader.ReadByte();
 
                     var c = Color.FromArgb(r, g, b);
                     colors.Add(c);
+                }
+
+                if (batchTableJsonByteLength > 0)
+                {
+                    var batchTableJsonBytes = reader.ReadBytes((int)batchTableJsonByteLength);
+                    var batchTableJson = Encoding.UTF8.GetString(batchTableJsonBytes);
+                    var batchTableBinaryBodyReferences = JsonSerializer.Deserialize<Dictionary<string, BinaryBodyReference>>(batchTableJson);
+
+                    var batchTableBinBytes = reader.ReadBytes((int)batchTableBinByteLength);
+
+                    // "{\
+                    // "temperature\":{\"byteOffset\":0,\"componentType\":\"FLOAT\",\"type\":\"SCALAR\"},
+                    // \"secondaryColor\":{\"byteOffset\":4000,\"componentType\":\"FLOAT\",\"type\":\"VEC3\"},\
+                    // "id\":{\"byteOffset\":16000,\"componentType\":\"UNSIGNED_SHORT\",\"type\":\"SCALAR\"}}  
+                    foreach (var reference in batchTableBinaryBodyReferences)
+                    {
+                        
+
+                    }
                 }
 
                 var pnts = new Pnts() { Magic = magic, Version = (int)version, Points = points, Colors = colors, FeatureTableMetadata = featureTableMetadata };

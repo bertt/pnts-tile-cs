@@ -9,6 +9,7 @@ namespace ConsoleApp
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             string infile = "testfixtures/1-0-1-1.pnts";

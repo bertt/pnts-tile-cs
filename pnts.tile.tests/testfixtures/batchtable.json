@@ -1,0 +1,17 @@
+{
+  "temperature": {
+    "byteOffset": 0,
+    "componentType": "FLOAT",
+    "type": "SCALAR"
+  },
+  "secondaryColor": {
+    "byteOffset": 4000,
+    "componentType": "FLOAT",
+    "type": "VEC3"
+  },
+  "id": {
+    "byteOffset": 16000,
+    "componentType": "UNSIGNED_SHORT",
+    "type": "SCALAR"
+  }
+}

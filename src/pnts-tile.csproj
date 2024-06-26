@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+	  <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Pnts.Tile</RootNamespace>
     <AssemblyName>pnts.tile</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -10,7 +10,7 @@
     <Company>Geodan</Company>
     <Product>pnts-tile</Product>
     <PackageId>pnts-tile</PackageId>
-    <Description>.NET Standard 2.0 Library for (de)serializing Pnts files</Description>
+    <Description>.NET Library for (de)serializing Pnts files</Description>
     <PackageLicenseUrl>https://github.com/bertt/pnts-tile-cs/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/bertt/pnts-tile-cs</PackageProjectUrl>
     <PackageTags>pnts tile pointcloud</PackageTags>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
   </ItemGroup>
 
 </Project>

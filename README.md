@@ -1,12 +1,12 @@
 # pnts-tile-cs
 
-.NET Standard 2.1 Library for (de)serializing  Cesium pnts tiles
+.NET 6 Library for (de)serializing Cesium pnts tiles
 
 [![NuGet Status](http://img.shields.io/nuget/v/pnts-tile.svg?style=flat)](https://www.nuget.org/packages/pnts-tile/)
 
 Spec: https://github.com/AnalyticalGraphicsInc/3d-tiles/tree/master/specification/TileFormats/PointCloud
 
-3D Tiles Candidate OGC® Community Standard (pdf alert): https://portal.opengeospatial.org/files/79137
+3D Tiles OGC® Community Standard (pdf alert): https://portal.opengeospatial.org/files/79137
 
 ## Sample code
 
