@@ -1,11 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Pnts.Tile
-{
-    public class ByteOffset
-    {
-        [JsonPropertyName("byteOffset")]
+namespace Pnts.Tile;
 
-        public int offset { get; set; }
-    }
+public class ByteOffset
+{
+    [JsonPropertyName("byteOffset")]
+
+    public int byteOffset { get; set; }
 }

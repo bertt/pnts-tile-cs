@@ -1,6 +1,10 @@
-﻿namespace Pnts.Tile
+﻿using System.Text.Json.Serialization;
+
+namespace Pnts.Tile;
+
+public class Rgb
 {
-    public class Rgb:ByteOffset
-    {
-    }
+    [JsonPropertyName("byteOffset")]
+
+    public int ByteOffset { get; set; }
 }
