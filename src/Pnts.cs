@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace Pnts.Tile;
 
@@ -15,31 +17,78 @@ public class Pnts
 
     public Dictionary<string, byte[]> BatchTable { get; set; }
 
+
     public byte[] ToBytes()
     {
-        var bytes = new List<byte>();
+        var header_length = 28;
 
-        bytes.AddRange(Encoding.UTF8.GetBytes(Magic));
-        bytes.AddRange(BitConverter.GetBytes(Version));
-        bytes.AddRange(BitConverter.GetBytes(Points.Count));
+        var featureTableJson = JsonSerializer.Serialize(FeatureTableMetadata);
+        var batchTableJson = BatchTable.Keys.Count> 0? JsonSerializer.Serialize(BatchTable): String.Empty;
 
-        foreach (var point in Points)
+        // convert points and colors to binary
+        var featureTableBinary = ToFeatureTableBytes(Points, Colors);
+        featureTableJson = BufferPadding.AddPadding(featureTableJson);
+        batchTableJson = BufferPadding.AddPadding(batchTableJson);
+        var batchTableBinary = new byte[0];
+
+        var byteLength = header_length + featureTableJson.Length + Encoding.UTF8.GetByteCount(batchTableJson) + batchTableBinary.Length + featureTableBinary.Length;
+
+        var featureTableJsonByteLength = featureTableJson.Length;
+        var batchTableJsonByteLength = Encoding.UTF8.GetByteCount(batchTableJson);
+        var featureTableBinaryByteLength = featureTableBinary.Length;
+        var batchTableBinaryByteLength = batchTableBinary.Length;
+
+        var memoryStream = new MemoryStream();
+        var binaryWriter = new BinaryWriter(memoryStream);
+        binaryWriter.Write(Encoding.UTF8.GetBytes(Magic));
+        binaryWriter.Write(BitConverter.GetBytes(Version));
+        binaryWriter.Write(BitConverter.GetBytes(byteLength));
+        binaryWriter.Write(BitConverter.GetBytes(featureTableJsonByteLength));
+        binaryWriter.Write(BitConverter.GetBytes(featureTableBinaryByteLength));
+        binaryWriter.Write(BitConverter.GetBytes(batchTableJsonByteLength));
+        binaryWriter.Write(BitConverter.GetBytes(batchTableBinaryByteLength));
+        binaryWriter.Write(Encoding.UTF8.GetBytes(featureTableJson));
+        binaryWriter.Write(featureTableBinary);
+        binaryWriter.Flush();
+        binaryWriter.Close();
+        return memoryStream.ToArray();
+    }
+
+    public bool Equals(Pnts other)
+    {
+        if (other == null)
         {
-            bytes.AddRange(BitConverter.GetBytes(point.X));
-            bytes.AddRange(BitConverter.GetBytes(point.Y));
-            bytes.AddRange(BitConverter.GetBytes(point.Z));
+            return false;
         }
 
-        foreach (var color in Colors)
+        return
+            Magic == other.Magic &&
+            Version == other.Version &&
+            Colors.Count == other.Colors.Count &&
+            Points.Count == other.Points.Count &&
+            FeatureTableMetadata.Equals(other.FeatureTableMetadata) &&
+            BatchTable.Keys.Count == other.BatchTable.Keys.Count;
+    }
+
+    private static byte[] ToFeatureTableBytes(IEnumerable<Point> points, IEnumerable<Color> colors)
+    {
+        var featureTableMemoryStream = new MemoryStream();
+        var binaryWriter = new BinaryWriter(featureTableMemoryStream);
+        foreach (var point in points)
         {
-            bytes.Add(color.R);
-            bytes.Add(color.G);
-            bytes.Add(color.B);
+            binaryWriter.Write(point.X);
+            binaryWriter.Write(point.Y);
+            binaryWriter.Write(point.Z);
         }
-
-        // todo feature Table
-
-        return bytes.ToArray();
-
+        foreach (var color in colors)
+        {
+            binaryWriter.Write(color.R);
+            binaryWriter.Write(color.G);
+            binaryWriter.Write(color.B);
+        }
+        binaryWriter.Flush();
+        binaryWriter.Close();
+        var featureTableBinary = featureTableMemoryStream.ToArray();
+        return featureTableBinary;
     }
 }

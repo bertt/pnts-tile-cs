@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Text.Json;
 
 namespace Pnts.Tile;
 
-public static class PntsSerializer
+public static class PntsReader
 {
-    public static Pnts Deserialize(Stream stream)
+    public static Pnts Read(Stream stream)
     {
         using (var reader = new BinaryReader(stream))
         {
@@ -29,12 +30,11 @@ public static class PntsSerializer
             var featureTableMetadata = JsonSerializer.Deserialize<FeatureTable>(featureTableJson);
 
             var featureTableBinBytes = reader.ReadBytes((int)featureTableBinByteLength);
-
-            var featureTableStream = new MemoryStream(featureTableBinBytes);
-            var binaryReader = new BinaryReader(featureTableStream);
+            var featureTableSpan = new Span<byte>(featureTableBinBytes);
+            var binaryReader = new BinaryReader(new MemoryStream(featureTableSpan.ToArray()));
 
             var points = new List<Point>();
-            for (var i = 0; i < featureTableMetadata.points_length; i++)
+            for (var i = 0; i < featureTableMetadata.pointsLength; i++)
             {
                 var x = binaryReader.ReadSingle();
                 var y = binaryReader.ReadSingle();
@@ -45,7 +45,7 @@ public static class PntsSerializer
             }
 
             var colors = new List<Color>();
-            for (var i = 0; i < featureTableMetadata.points_length; i++)
+            for (var i = 0; i < featureTableMetadata.pointsLength; i++)
             {
                 var r = (int)binaryReader.ReadByte();
                 var g = (int)binaryReader.ReadByte();
@@ -73,7 +73,7 @@ public static class PntsSerializer
                     var key = reference.Key;
                     var values = new List<byte>();
 
-                    for (var i = 0; i < featureTableMetadata.points_length; i++)
+                    for (var i = 0; i < featureTableMetadata.pointsLength; i++)
                     { 
 
                         if (type == "SCALAR")

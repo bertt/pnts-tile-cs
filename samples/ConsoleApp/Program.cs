@@ -16,7 +16,7 @@ class Program
         var stream = File.OpenRead(infile);
         Console.WriteLine("Pnts tile sample application");
         Console.WriteLine($"Start parsing {infile}...");
-        var pnts = PntsSerializer.Deserialize(stream);
+        var pnts = PntsReader.Read(stream);
 
         var rtc = pnts.FeatureTableMetadata.Rtc_Center;
         var rtc_cartesian = GetCartesianPoint(rtc[0], rtc[1], rtc[2]);
@@ -25,7 +25,7 @@ class Program
         WritePositions3DToCsv("positions.csv", wgs84Points);
 
         var first_point = wgs84Points[0];
-        Console.WriteLine($"Number of points: {pnts.FeatureTableMetadata.points_length} ");
+        Console.WriteLine($"Number of points: {pnts.FeatureTableMetadata.pointsLength} ");
         Console.WriteLine($"RTC_CENTER (relative to center x,y,z): {rtc[0]},{rtc[1]},{rtc[2]}");
         Console.WriteLine($"First point (x,y,z): {pnts.Points[0].X}, {pnts.Points[0].Y}, {pnts.Points[0].Z} ");
         Console.WriteLine($"First point (longitude, latitude, altitude): {first_point.Longitude.DecimalDegrees}, {first_point.Latitude.DecimalDegrees}, {first_point.Altitude} ");

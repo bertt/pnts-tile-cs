@@ -4,14 +4,14 @@ using Pnts.Tile;
 
 namespace Tests;
 
-public class PntsParserTests
+public class PntsReaderTests
 {
     [Test]
     public void ReadGoCesiumTilerPnts()
     {
         const string testfile = "testfixtures/content.pnts";
         var pntsFile = File.OpenRead(testfile);
-        var pnts = PntsSerializer.Deserialize(pntsFile);
+        var pnts = PntsReader.Read(pntsFile);
     }
 
     [Test]
@@ -19,7 +19,7 @@ public class PntsParserTests
     {
         const string testfile = "testfixtures/pointCloudWithPerPointProperties.pnts";
         var pntsFile = File.OpenRead(testfile);
-        var pnts = PntsSerializer.Deserialize(pntsFile);
+        var pnts = PntsReader.Read(pntsFile);
     }
 
     [Test]
@@ -27,7 +27,7 @@ public class PntsParserTests
     {
         // source file: https://github.com/CesiumGS/3d-tiles-samples/blob/master/tilesets/TilesetWithRequestVolume/points.pnts
         var pntsFile = File.OpenRead(@"testfixtures/points.pnts");
-        var pnts = PntsSerializer.Deserialize(pntsFile);
+        var pnts = PntsReader.Read(pntsFile);
         var expectedMagicHeader = "pnts";
         var  expectedVersionHeader = 1;
 
@@ -54,7 +54,7 @@ public class PntsParserTests
 
 
         // act
-        var pnts = PntsSerializer.Deserialize(pntsfile);
+        var pnts = PntsReader.Read(pntsfile);
 
         // assert
         Assert.That(expectedMagicHeader == pnts.Magic);
@@ -69,7 +69,7 @@ public class PntsParserTests
         Assert.That(pnts.Colors[0].R == 75);
         Assert.That(pnts.Colors[0].G == 91);
         Assert.That(pnts.Colors[0].B == 88);
-        Assert.That(pnts.FeatureTableMetadata.points_length == 164);
+        Assert.That(pnts.FeatureTableMetadata.pointsLength == 164);
         var rtc = pnts.FeatureTableMetadata.Rtc_Center;
         Assert.That(rtc[0] == 3830004.5);
         Assert.That(rtc[1] == 323597.5);
