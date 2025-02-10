@@ -1,6 +1,6 @@
 # pnts-tile-cs
 
-.NET 6 Library for (de)serializing Cesium pnts tiles
+.NET 8.0 Library for (de)serializing Cesium pnts tiles
 
 [![NuGet Status](http://img.shields.io/nuget/v/pnts-tile.svg?style=flat)](https://www.nuget.org/packages/pnts-tile/)
 
